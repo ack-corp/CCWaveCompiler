@@ -92,7 +92,7 @@ int main()
     k = 5; // ok, i = 5
     l = k; // ok, l = 10
     l = &k; // ok, l = the k adress
-    &l = &k; // maybe it is possible to trigger a compilation error here as we loose the l reference
+    &l = &k; // maybe it is possible to trigger a compilation error here as we loose the l reference + create a tool to be able to track the last use position of a heap var, not only his allocation point, i'm not so sure of that at compile time, but at least, i know its possible during running time like with valgrind.
 
 
 
