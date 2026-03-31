@@ -1,7 +1,22 @@
 ack get sys/Shell
 ack get sys/Pipe
 
+final class Error<T> {
+    public:
+        enum types;
+        string type
+        string msg;
+        T onBoard;
+}
+
 #include "sys/Shell.h"
+#include "sys/Pipe.h"
+
+class OnBoard
+{
+    // TODO pass anything you want
+}
+
 
 int runner()
 {
@@ -36,8 +51,22 @@ int main()
     sleep(10);
     p.wait(); // no effect
 
-    p.timeout(null); // not triggered
-    p.execute(runner).wait();
+    try
+    {
+        p.timeout(null); // not triggered
+        p.execute(runner).wait();
+        Error<OnBoard> err("i just wanna trigger something");
+        throw err;
+    }
+    catch // no need for var here... Error is a final class. The scope give access to error
+    {
+        print(error)
+        if (error.type == Error::types::runtime)
+            print("system error :\n" + error)
+        else if (error.type == "my error")
+            print("personnal error :\n" + error)
+    }
 
     return 0;
 }
+
